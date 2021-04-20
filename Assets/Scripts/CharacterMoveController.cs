@@ -18,6 +18,18 @@ public class CharacterMoveController : MonoBehaviour{
     public float groundRaycastDistance;
     public LayerMask groundLayerMask;
 
+    [Header("Scoring")]
+    public ScoreController score;
+    public float scoringRatio;
+    private float lastPosX;
+
+    [Header("GameOver")]
+    public GameObject gameOverScreen;
+    public float fallPosY;
+
+    [Header("Camera")]
+    public CameraMoveController gameCamera;
+
     private Rigidbody2D rig;
     private Animator anim;
     private CharacterSoundController sound;
@@ -27,6 +39,8 @@ public class CharacterMoveController : MonoBehaviour{
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sound = GetComponent<CharacterSoundController>();
+
+        gameOverScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,8 +54,40 @@ public class CharacterMoveController : MonoBehaviour{
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            //Debug.Log("Keluar");
+            Application.Quit();
+        }
+
+        if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKey(KeyCode.R)) {
+            //Debug.Log("Reload");
+            GameOver();
+        }
+
         // change animation
         anim.SetBool("isOnGround", isOnGround);
+
+        // calculate Score
+        int distancePassed = Mathf.FloorToInt(transform.position.x - lastPosX);
+        int scoreIncrement = Mathf.FloorToInt(distancePassed / scoringRatio);
+
+        if(scoreIncrement > 0) {
+            score.IncreaseCurrentScore(scoreIncrement);
+            lastPosX += distancePassed;
+        }
+
+        //Debug.Log(transform.position.y);
+
+        // gameover
+        if(transform.position.y < fallPosY) {
+            GameOver();
+        }
+
+        if (score.isIncreaseSpeedRange) {
+            maxSpeed += score.speedIncrease;
+            score.isIncreaseSpeedRange = false;
+            Debug.Log(maxSpeed);
+        }
     }
 
     private void FixedUpdate() {
@@ -70,5 +116,19 @@ public class CharacterMoveController : MonoBehaviour{
 
     private void OnDrawGizmos() {
         Debug.DrawLine(transform.position, transform.position + (Vector3.down * groundRaycastDistance), Color.white);
+    }
+
+    private void GameOver() {
+        // set high score
+        score.FinishScoring();
+
+        // stop camera movement
+        gameCamera.enabled = false;
+
+        // show gameover
+        gameOverScreen.SetActive(true);
+
+        // disable this too
+        this.enabled = false;
     }
 }

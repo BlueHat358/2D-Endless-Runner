@@ -103,8 +103,8 @@
     <Compile Include="Library\PackageCache\com.unity.timeline@1.4.6\Editor\CurveEditUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.4.6\Editor\TimelineUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.4.6\Editor\Actions\IMenuName.cs" />
-    <Compile Include="Library\PackageCache\com.unity.timeline@1.4.6\Editor\treeview\TimelineTreeViewGUI.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.4.6\Editor\Extensions\AnimatedParameterExtensions.cs" />
+    <Compile Include="Library\PackageCache\com.unity.timeline@1.4.6\Editor\treeview\TimelineTreeViewGUI.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.4.6\Editor\Signals\SignalEmitterEditor.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.4.6\Editor\State\ISequenceState.cs" />
     <Compile Include="Library\PackageCache\com.unity.timeline@1.4.6\Editor\Window\Modes\TimelineDisabledMode.cs" />

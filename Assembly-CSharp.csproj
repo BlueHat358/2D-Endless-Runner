@@ -56,11 +56,15 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\TerrainGeneratorController.cs" />
     <Compile Include="Assets\Scripts\CharacterMoveController.cs" />
+    <Compile Include="Assets\Scripts\TerrainTemplateController.cs" />
     <Compile Include="Assets\Scripts\CameraMoveController.cs" />
     <Compile Include="Assets\Scripts\CharacterSoundController.cs" />
-    <Compile Include="Assets\Scripts\TerrainTemplateController.cs" />
-    <Compile Include="Assets\Scripts\TerrainGeneratorController.cs" />
+    <Compile Include="Assets\Scripts\ScoreData.cs" />
+    <Compile Include="Assets\Scripts\ScoreController.cs" />
+    <Compile Include="Assets\Scripts\UIScoreController.cs" />
+    <Compile Include="Assets\Scripts\UIGameOverController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
